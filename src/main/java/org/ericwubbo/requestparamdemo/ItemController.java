@@ -14,7 +14,9 @@ public class ItemController {
     private final ItemRepository itemRepository;
 
     @GetMapping
-    public Iterable<Item> getAll() {
+    public Iterable<Item> getAll(@RequestParam String contains, @RequestParam(required=false) Double maxPrice) {
+        // note: @RequestParam(required=false) Double maxPrice _could_ be written as
+        // @RequestParam Optional<Double> maxPrice, but IntelliJ doesn't like Optional arguments
         return itemRepository.findAll();
     }
 }
